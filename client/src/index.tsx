@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;

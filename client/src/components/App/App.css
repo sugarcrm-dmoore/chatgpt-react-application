@@ -7,6 +7,16 @@
   }
 }
 
+@keyframes slideOut {
+  from { right: -62vw; }
+  to { right: 0; }
+}
+
+@keyframes slideIn {
+  from { right: 0; }
+  to { right: -62vw; }
+}
+
 html, body, #root, .App {
   height: 100%;
 }
@@ -29,11 +39,21 @@ body {
 
 .mock-area {
   width: 62vw;
-  height: 89vh;
-  /* background-color: red; */
-  top: 9vh;
-  left: 4vw;
-  position: absolute;
+  height: 100vh;
+  background-color: rgb(237, 240, 241);
+  right: -62vw;
+  position: fixed;
+  border-left: 1px solid #d9dddf;
+  /* transition: right 0.5s ease-in-out; */
+}
+
+.mock-area.closed {
+  animation: slideIn 0.5s backwards;
+}
+
+.mock-area.open {
+  animation: slideOut 0.5s forwards;
+  /* right: 0; */
 }
 
 .inner-mock-area {
@@ -43,15 +63,31 @@ body {
   /* background-color: green; */
 }
 
-.mock-btn {
-  background-color: white;
-  height: 34px;
-  width: 151px;
-  position: absolute;
-  left: 41%;
-  cursor: pointer;
-  /* border: 1px grey dashed; */
+.label-font {
   font-size: 11px;
+  font-weight: 600;
+}
+
+.mock-btn {
+  background-color: rgb(237, 240, 241);
+  height: 28px;
+  width: 30px;
+  position: absolute;
+  left: -31px;
+  cursor: pointer;
+  font-size: 11px;
+  border: 1px solid #d9dddf;
+  border-radius: 2px 0 0 2px;
+  top: 48px;
+}
+
+.mock-btn .icon-container, 
+.insight-label-header .icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #6f777b;
 }
 
 .mock-btn span {
@@ -61,15 +97,62 @@ body {
   display: block;
   margin-left: 10px;
   line-height: 39px;
-  color: #6f777b;
 }
 
-.mock-btn.active span {
+.panel-header {
+  height: 40px;
+  border-bottom: 1px solid #d9dddf;
+  margin-left: 10px;
   color: #0679c8;
 }
 
-.mock-btn.active {
-  border-bottom: 4px #0679c8 solid;
+.insight-label-header {
+  font-weight: 600;
+  padding: 10px 0;
+  margin-left: 10px;
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.insight-label-header .icon-container {
+  margin: 0 10px;
+}
+
+.card-area {
+  margin-left: 10px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
+.card-area .insight-card {
+  background-color: white;
+  flex-basis: 48%;
+  border-radius: .425rem;
+  max-height: 30vh;
+  margin-right: 2%;
+  box-shadow: 0 2px 2px #d9dddf;
+}
+
+.account-label-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 4px);
+  width: 200px;
+  align-items: center;
+  border-bottom: 4px solid #0679c8;
+}
+
+.account-label-wrapper .icon-container {
+  background-color: rgb(23, 174, 112);
+  margin: 4px 10px;
+  padding: 8px 10px;
+  color: white;
+  border-radius: 20px;
 }
 
 .full-area {
@@ -82,11 +165,10 @@ body {
 }
 
 .mock-display-area {
-  background-color: white;
+  background-color: rgb(237, 240, 241);
   width: 100%;
   position: absolute;
-  height: calc(100% - 40px);
-  top: 50px;
+  height: 100%;
 }
 
 .sugarcrm-loader {

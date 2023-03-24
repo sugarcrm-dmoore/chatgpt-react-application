@@ -4,10 +4,12 @@ import PromptInput from "../PromptInput/PromptInput";
 import './App.css';
 import {ResponseInterface} from "../PromptResponseList/response-interface";
 import PromptResponseList from "../PromptResponseList/PromptResponseList";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft, faClose, faBuilding, faChevronDown, faStar } from '@fortawesome/free-solid-svg-icons';
 
 type ModelValueType = 'gpt' | 'codex' | 'image';
 const App = () => {
-  const [isShowing, setIsShowing] = useState(false);
+  const [isShowing, setIsShowing] = useState(true);
   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   let loadInterval: number | undefined;
@@ -96,18 +98,56 @@ const App = () => {
 
   return (
     <div className='App'>
-      <div className='mock-area'>
+      <div className={`mock-area ${isShowing ? 'open' : 'closed'}`}>
         <div className='inner-mock-area'>
           <div className={`mock-btn ${(isShowing ? 'active' : '')}`} onClick={clickHandler}>
-            <span>Insight Feed</span>
+            <div className='icon-container'>
+              {isShowing ? (
+                <FontAwesomeIcon size={'xl'} icon={faClose}/>
+              ) :
+              (<FontAwesomeIcon size={'xl'} icon={faAngleDoubleLeft} />)}
+            </div>
           </div>
           {isShowing && (<div className='mock-display-area'>
-            <div className={'full-area scroll-y'}>
+            <div className='panel-header'>
+              <div className='account-label-wrapper label-font'>
+                <div className='icon-container'>
+                  <FontAwesomeIcon swapOpacity={true} size={'lg'} icon={faBuilding}/>
+                </div>
+                <div>
+                  <span>Rystad Energy</span>
+                </div>
+              </div>
+            </div>
+            <div className='insight-label-header'>
+              <span>Accounts Insight Dashboard</span>
+              <div className='icon-container'>
+                <FontAwesomeIcon size={'sm'} icon={faChevronDown}/>
+              </div>
+              <div className='icon-container'>
+                <FontAwesomeIcon size={'sm'} icon={faStar}/>
+              </div>
+            </div>
+            <div className={'card-area'}>
+              <div className={'insight-card scroll-y'}>
+                {isLoading && (<div className='sugarcrm-loader'></div>)}
+                <div id="response-list">
+                  <PromptResponseList responseList={responseList} key="response-list"/>
+                </div>
+              </div>
+              <div className={'insight-card scroll-y'}>
+                {isLoading && (<div className='sugarcrm-loader'></div>)}
+                <div id="response-list">
+                  <PromptResponseList responseList={responseList} key="response-list"/>
+                </div>
+              </div>
+            </div>
+            {/* <div className={'full-area scroll-y'}>
             {isLoading && (<div className='sugarcrm-loader'></div>)}
               <div id="response-list">
                 <PromptResponseList responseList={responseList} key="response-list"/>
               </div>
-            </div>
+            </div> */}
           </div>)}
         </div>
       </div>

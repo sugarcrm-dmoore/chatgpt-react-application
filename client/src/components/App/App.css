@@ -1,17 +1,119 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 html, body, #root, .App {
   height: 100%;
 }
 .App {
   display: flex;
   flex-direction: column;
+  background-image: url('../../img/mock-background-initial.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
 /* Add background color to the body */
 body {
-  background-color: rgba(68, 70, 84, 1.0);
+  font-family: "Inter","Helvetica Neue",Arial,sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0;
+}
+
+.mock-area {
+  width: 62vw;
+  height: 89vh;
+  /* background-color: red; */
+  top: 9vh;
+  left: 4vw;
+  position: absolute;
+}
+
+.inner-mock-area {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  /* background-color: green; */
+}
+
+.mock-btn {
+  background-color: white;
+  height: 34px;
+  width: 151px;
+  position: absolute;
+  left: 41%;
+  cursor: pointer;
+  /* border: 1px grey dashed; */
+  font-size: 11px;
+}
+
+.mock-btn span {
+  text-align: left;
+  font-weight: 600;
+  height: 39px;
+  display: block;
+  margin-left: 10px;
+  line-height: 39px;
+  color: #6f777b;
+}
+
+.mock-btn.active span {
+  color: #0679c8;
+}
+
+.mock-btn.active {
+  border-bottom: 4px #0679c8 solid;
+}
+
+.full-area {
+  height: 100%;
+  width: 100%;
+}
+
+.scroll-y {
+  overflow-y: scroll;
+}
+
+.mock-display-area {
+  background-color: white;
+  width: 100%;
+  position: absolute;
+  height: calc(100% - 40px);
+  top: 50px;
+}
+
+.sugarcrm-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 8px solid #0079b8;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: translate(-45%, -45%);
+}
+
+.sugarcrm-loader::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border-top: 8px solid #0079b8;
+  border-right: 8px solid transparent;
+  animation: spin 1s linear infinite reverse;
 }
 
 /* Remove border color from the response list container */

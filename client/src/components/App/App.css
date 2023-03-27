@@ -122,20 +122,12 @@ body {
 
 .card-area {
   margin-left: 10px;
-  height: 100%;
+  height: calc(100% - 105px);
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   overflow-y: scroll;
-}
-
-.card-area .insight-card {
-  background-color: white;
-  flex-basis: 48%;
-  border-radius: .425rem;
-  max-height: 30vh;
-  margin-right: 2%;
-  box-shadow: 0 2px 2px #d9dddf;
 }
 
 .account-label-wrapper {
@@ -172,30 +164,13 @@ body {
 }
 
 .sugarcrm-loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  border: 8px solid #0079b8;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  animation: spin 1.2s linear infinite;
-  position: absolute;
-  top: 45%;
-  left: 45%;
-  transform: translate(-45%, -45%);
-}
-
-.sugarcrm-loader::after {
-  content: "";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 0 auto;
-  border-radius: 50%;
-  border-top: 8px solid #0079b8;
-  border-right: 8px solid transparent;
-  animation: spin 1s linear infinite reverse;
+  border: 3px solid #ccc;
+  border-top-color: #333;
+  animation: spin 1s ease-in-out infinite;
 }
 
 /* Remove border color from the response list container */

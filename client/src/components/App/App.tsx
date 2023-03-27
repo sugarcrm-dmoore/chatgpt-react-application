@@ -6,13 +6,16 @@ import {ResponseInterface} from "../PromptResponseList/response-interface";
 import PromptResponseList from "../PromptResponseList/PromptResponseList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleLeft, faClose, faBuilding, faChevronDown, faStar } from '@fortawesome/free-solid-svg-icons';
+import { focusConfig } from './insight-info';
+import { InsightCard } from '../InsightCard/InsightCard';
 
 type ModelValueType = 'gpt' | 'codex' | 'image';
 const App = () => {
-  const [isShowing, setIsShowing] = useState(true);
+  const [isShowing, setIsShowing] = useState(false);
   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   let loadInterval: number | undefined;
+
 
   const generateUniqueId = () => {
     const timestamp = Date.now();
@@ -129,18 +132,20 @@ const App = () => {
               </div>
             </div>
             <div className={'card-area'}>
-              <div className={'insight-card scroll-y'}>
+              { focusConfig.map(c => (<InsightCard {...c}/>)) }
+              {/* <div className={'insight-card scroll-y'}>
+                <div className='sugarcrm-loader'></div> */}
+                {/* {isLoading && (<div className='sugarcrm-loader'></div>)}
+                <div id="response-list">
+                  <PromptResponseList responseList={responseList} key="response-list"/>
+                </div> */}
+              {/* </div> */}
+              {/* <div className={'insight-card scroll-y'}>
                 {isLoading && (<div className='sugarcrm-loader'></div>)}
                 <div id="response-list">
                   <PromptResponseList responseList={responseList} key="response-list"/>
                 </div>
-              </div>
-              <div className={'insight-card scroll-y'}>
-                {isLoading && (<div className='sugarcrm-loader'></div>)}
-                <div id="response-list">
-                  <PromptResponseList responseList={responseList} key="response-list"/>
-                </div>
-              </div>
+              </div> */}
             </div>
             {/* <div className={'full-area scroll-y'}>
             {isLoading && (<div className='sugarcrm-loader'></div>)}

@@ -163,16 +163,6 @@ body {
   height: 100%;
 }
 
-.sugarcrm-loader {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 3px solid #ccc;
-  border-top-color: #333;
-  animation: spin 1s ease-in-out infinite;
-}
-
 /* Remove border color from the response list container */
 #response-list {
   border: none;

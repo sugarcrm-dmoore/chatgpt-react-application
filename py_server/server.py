@@ -1,9 +1,10 @@
 import os
 import openai
 import logging
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, Response
 from flask_cors import CORS
 import json
+import time
 
 openai.api_key = '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'
 prompt_context = {'role': 'system', 'content': 'please be friendly to the user'}
@@ -22,18 +23,8 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-@app.route('/get-prompt-result', methods=['POST'])
-def get_prompt_result():
-    # prompt = """Hello, {}""".format(request.json['prompt'])
-    # logger.info("""here, {}""".format(prompt))
-    # response = openai.ChatCompletion.create(
-    #     model='gpt-3.5-turbo',
-    #     messages=[prompt_context, user_prompt]
-    # )
-
-    # return response.choices[0].message.content
-    
-    return """# Report on Rystad Energy
+def chunk_reponse():
+    resp = """# Report on Rystad Energy
 
 ## Overview
 
@@ -70,6 +61,26 @@ Some of the key trends shaping the energy industry include:
 - Greater investment in natural gas, which is seen as a cleaner alternative to coal and oil
 
 Overall, the energy industry is undergoing a significant transformation as it adapts to the challenges of the 21st century. Companies that can innovate and embrace change are likely to thrive in this new energy landscape.""";
+
+    for line in resp.split('\n'):
+        time.sleep(0.3)
+        yield '{}\n'.format(line)
+
+@app.route('/get-prompt-result', methods=['POST'])
+def get_prompt_result():
+    prompt = """Hello, {}""".format(request.json['prompt'])
+    logger.info("""here, {}""".format(prompt))
+    response = openai.ChatCompletion.create(
+        model='gpt-3.5-turbo',
+        messages=[prompt_context, user_prompt],
+        stream=True
+    )
+
+    #return response
+    #return response.choices[0].message.content
+    return Response(chunk_reponse(), mimetype='text/event-stream')
+    
+
 
 if __name__ == '__main__':
     app.run(port=3001, debug=True)

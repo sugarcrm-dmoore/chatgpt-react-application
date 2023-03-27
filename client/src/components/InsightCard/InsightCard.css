@@ -1,0 +1,137 @@
+@keyframes dot {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+.insight-card {
+    background-color: white;
+    flex-basis: 48%;
+    border-radius: .425rem;
+    margin-right: 2%;
+    margin-bottom: 2vh;
+    box-shadow: 0 2px 2px #d9dddf;
+    position: relative;
+    transition: height .5s ease-out;
+}
+
+.insight-card.collapsed {
+    height: 65px;
+}
+
+.insight-card.expanded {
+    height: 30vh;
+}
+
+.card-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.insight-card.collapsed .title-area {
+    height: 100%;
+}
+
+.insight-card.expanded .title-area {
+    height: 40px;
+}
+
+.insight-card.collapsed .card-title-wrapper {
+    font-size: 1.3rem;
+    top: 50%;
+    transform: translate(0%, -50%);
+    font-weight: 400;
+}
+
+.insight-card.expanded .card-title-wrapper {
+    font-size: .75rem;
+    top: 5%;
+    font-weight: 700;
+    border-bottom: 1px solid #0679c8;
+}
+
+.card-title-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    color: #333;
+    position: absolute;
+    left: 5%;
+    transition: top .5s ease-in-out, 
+        font-size 1s ease-in-out, 
+        font-weight 1s ease-in-out,
+        border-bottom 1s ease-in-out;
+}
+
+.three-dot-loader {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.three-dot-loader div {
+    position: absolute;
+    bottom: 0;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: #000;
+    animation: dot 1.3s ease-in-out infinite;
+}
+
+.three-dot-loader div:nth-child(1) {
+    left: 0;
+    animation-delay: -0.2s;
+}
+
+.three-dot-loader div:nth-child(2) {
+    left: 8px;
+    animation-delay: -0.1s;
+}
+
+.three-dot-loader div:nth-child(3) {
+    left: 16px;
+}
+
+.chat-area {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.input-area {
+    height: 40px;
+    border-top: 1px solid #d9dddf;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin: 4px;
+  position: relative;
+}
+
+.input-container input[type="text"] {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+.input-container button[type="submit"] {
+    padding: 7px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    position: absolute;
+    right: 0;
+}
+  
+.input-container button[type="submit"] i {
+    font-size: 20px;
+}

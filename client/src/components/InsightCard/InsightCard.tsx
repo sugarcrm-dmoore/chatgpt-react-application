@@ -15,12 +15,7 @@ export const InsightCard = (props: InsightCardProps) => {
 
     
     useEffect(() => {
-        const timer = setTimeout(() => {
-            streamGPTResult()
-            //getGPTResult();
-        }, 2000);
-        
-        return () => clearTimeout(timer);
+        streamGPTResult()
     }, [])
 
     const delay = (ms: number) => {
@@ -72,7 +67,7 @@ export const InsightCard = (props: InsightCardProps) => {
 
         const uniqueId = addResponse(false);
 
-        fetch('http://localhost:3001/get-prompt-result', {
+        fetch(`http://localhost:3001/${props.chatEndpoint}`, {
             method: 'POST',
             headers: {
                 'Accepts': 'text/event-stream',
@@ -92,8 +87,9 @@ export const InsightCard = (props: InsightCardProps) => {
                 if (isLoading) {
                     setIsLoading(false)
                 }
+                console.log('???', decoder.decode(value))
                 updateResponse(uniqueId, {
-                    response: decoder.decode(value).trim(),
+                    response: decoder.decode(value),
                 });
                 reader.read().then(processText)
             })

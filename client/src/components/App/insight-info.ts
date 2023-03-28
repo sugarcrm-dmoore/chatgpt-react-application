@@ -4,31 +4,31 @@ export const focusConfig: InsightCardProps[] = [
     {
         id: 0,
         title: 'Industry Summary',
-        chatEndpoint: 'get-prompt-result',
-        initialPrompt: 'Energy',
+        chatEndpoint: 'get-industry-prompt',
+        initialPrompt: 'Rystad Energy',
     },
     {
         id: 1,
         title: 'Company Summary',
-        chatEndpoint: 'get-prompt-result',
+        chatEndpoint: 'get-company-prompt',
         initialPrompt: 'Rystad Energy',
     },
     {
         id: 2,
         title: 'Decision Maker Summary',
-        chatEndpoint: 'get-prompt-result',
+        chatEndpoint: 'get-employee-prompt',
         initialPrompt: 'Rystad Energy',
     },
     {
         id: 3,
         title: 'Case Summary',
-        chatEndpoint: 'get-prompt-result',
+        chatEndpoint: 'get-case-summary',
         initialPrompt: '',
     },
     {
         id: 4,
-        title: 'Account History',
-        chatEndpoint: 'get-prompt-result',
+        title: 'Contact Information',
+        chatEndpoint: 'get-contact-information',
         initialPrompt: '',
     }
 ];

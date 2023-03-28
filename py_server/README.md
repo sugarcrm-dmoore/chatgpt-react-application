@@ -29,7 +29,7 @@ export OPENAI_API_KEY=<your_api_key>
 
 Start the Flask server using the following command:
 ```bash
-python app.py
+python server.py
 ```
 Open your web browser and navigate to http://localhost:3001.
 

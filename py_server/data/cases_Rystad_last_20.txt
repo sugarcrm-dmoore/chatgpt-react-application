@@ -1,0 +1,444 @@
+Note written on: 2023-03-02 15:04:27
+
+assigned to: Nizar Dababi Technical Support Engineer EMEA Support Tier 2
+
+Titile: Cases assigned to incorrect user + Account name changes: logic hook?
+ Description: Hello team, 
+ 
+We’ve run into an issue with our cases being assigned to the wrong user. This appears to be done by a logic hook and corresponds to a whole series of changes being made to the Account Name of the case. It’s a bit strange! 
+Please see the screenshot below on case 100575 <https://urldefense.com/v3/__https://rystadenergy.sugaropencloud.eu/index.php*Cases/8a5aee0c-a973-11ed-a428-026aa914312c__;Iw!!P-5o2buULA!yK9Z-SeC6_jf3jTBAypQ63AxoUoW55UcCW7GNB2T1WIV05i7eTP_xhRaxXR_pU9CbTW8JG2b3phc0WXrDzHdHbOifCVuLgI$>.
+ 
+In fact, we also reached out to Joakim who have checked it from his side and seems like the logic hook doesn`t do anything.
+ 
+Do you have any suggestions as to what might be going wrong here?
+ 
+Thank you,
+ 
+
+ 
+ 
+ 
+Best regards,
+ 
+Daria
+
+ _______
+
+ 
+Note written on: 2023-03-01 10:32:53
+
+assigned to: Lynn Catterson Consultant US Support Tier 2
+
+Titile: Sync event data from event module in Sugar Sell to Sugar Market
+ Description: Hi Support,
+
+We are currently investigating alternative webinar platform – ON24 and plan to build integration from ON24 to Sugar CRM, problem is that I do want the webinars in ON24 to be associated with an event in Sugar Market – for lead scoring purposes, can this be achieved if the webinar data is mapped from ON24 to Sugar CRM and then Sugar CRM sync the event data to Sugar Market (including creating the event and also adding all registrants and attendees)?
+
+Thanks for your insights.
+Best regards,
+
+Huan
+
+ _______
+
+ 
+Note written on: 2023-02-28 14:18:56
+
+assigned to: Claudia Mulas Support Specialist EMEA Support Tier 1
+
+Titile: Build collapsibles in Sugar Market landing page
+ Description: Hi Support,
+ 
+I try to build a collapsible box in the landing page for our event agenda but it seems that this code cant be rendered properly. Any reason why? Landing page ID792
+
+ 
+What I expected: 
+
+
+ 
+
+
+
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+ 
+.active, .collapsible:hover {
+  background-color: #555;
+}
+ 
+.collapsible:after {
+  content: 'B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+ 
+.active:after {
+  content: 2212;
+}
+ 
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+
+
+ 
+Animated Collapsibles
+ 
+A Collapsible:
+Open Collapsible
+
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+ 
+
+var coll = document.getElementsByClassName(collapsible);
+var i;
+ 
+for (i = 0; i 
+ 
+
+
+ 
+Best regards,
+Huan
+
+ _______
+
+ 
+Note written on: 2023-02-27 12:55:13
+
+assigned to: Lynn Catterson Consultant US Support Tier 2
+
+Titile: [BlueStreak] URGENT: Stuck staging campaigns for Customer rystadenergy.com(97637)
+ Description: Campaigner stuck in processing status 2001 for Customer rystadenergy.com(97637), Campaign Rystad Talks Industry_webinar invitation_March 2023 (Rystad Talks Industry_webinar invitation_March 2023) .
+
+ _______
+
+ 
+Note written on: 2023-02-23 12:01:51
+
+assigned to: Claudia Mulas Support Specialist EMEA Support Tier 1
+
+Titile: Sync up form submissions to Sugar Sell
+ Description: Hi Support,
+
+My colleague forgot to turn the sync with crm on at the last step when building forms. She later turned the sync on but for past form submissions how can we make sure that they are synced up to sugar crm?
+
+Concerned form and landing pages: LP ID - Session 1: 752  // LP ID -Session 2: 753 // Form ID Session 1: 839   Form ID Session 2: 840
+Thanks for your tips.
+
+Best regards,
+
+Huan
+
+ _______
+
+ 
+Note written on: 2023-02-10 15:18:42
+
+assigned to: Lori Fuller Technical Support Engineer US Support Tier 2
+
+Titile: Valid email in Sugar crm show as invalid in sugar market
+ Description: Hi support,
+ 
+I find multiple cases where the email addresses in sugar crm show as valid but somehow show as invalid in sugar market. These emails don’t have history of changing emails in the audit log. Can you please investigate.
+Example: 
+https://rystadenergy.sugaropencloud.eu/#Contacts/bd1ad334-a702-11ed-96d6-02d1e55d0c80 
+https://appeu.salesfusion.com/webapp/#/crm/contacts-view/card/213668
+ 
+https://rystadenergy.sugaropencloud.eu/#Contacts/d5202b06-a72e-11ed-93c5-0af44246ff10 
+https://appeu.salesfusion.com/webapp/#/crm/contacts-view/card/213722
+ 
+Best regards,
+Huan
+
+ _______
+
+ 
+Note written on: 2023-02-10 15:15:45
+
+assigned to: Krzysztof Andrzejewski Technical Support Engineer EMEA Support Tier 2
+
+Titile: Not able to download form report - Sugar Market
+ Description: Hi Support,
+ 
+We encounter an issue with form ID 808. We can’t download the report associated with this form. When click on the icon, it shows an error page. Can you fix this please? Thanks! 
+
+ 
+
+ 
+Best regards,
+ 
+ 
+Huan
+
+ _______
+
+ 
+Note written on: 2023-02-09 09:31:12
+
+assigned to: Claudia Mulas Support Specialist EMEA Support Tier 1
+
+Titile: External form connector - Sugar Market
+ Description: Hi Sugar support,
+
+ 
+
+I see the external form connector is under Legacy feature now, may I ask whether this feature is still fully usable and will it be phased out this year or 2024? We need this feature to connect our website form (with custom fields) to sugar market form for lead scoring and lead management.
+
+As we are contracting an agency to do this, we need  your response ASAP.
+
+ 
+
+Many thanks!
+
+ 
+
+Best regards,
+
+Huan
+
+ _______
+
+ 
+Note written on: 2023-02-07 11:54:44
+
+assigned to: Raquel Conde Margalho  EMEA Support Tier 2
+
+Titile: Enable field for mass update in Sugar CRM
+ Description: Hi Sugar Support,
+
+I updated this field under both leads and contacts and checked the box for mass update but I don’t see this option when I try to upload leads and contacts in bulk. May I ask what is wrong here? Thanks!
+
+https://www.screencast.com/t/vLkaLaBKRODw
+
+https://www.screencast.com/t/wSCLCYJa6V
+
+https://www.screencast.com/t/bsCs2jPVoXF
+
+ _______
+
+ 
+Note written on: 2023-02-07 10:10:16
+
+assigned to: Krzysztof Andrzejewski Technical Support Engineer EMEA Support Tier 2
+
+Titile: [Re-open Case:473315] BUG: Sugar market form fieds not updated
+ Description: [Please describe why this case is being re-opened]
+
+Sorry for the late reply. I just tested with my record: https://rystadenergy.sugaropencloud.eu/#Leads/68a71ab0-6b0c-11ed-93b7-02d1e55d0c80
+
+And Agreed to Policy is a 0/1 value mapping in Sugar CRM. In this case, should I change the field type in Sugar Market to number? I can't change the field btw, could you please help me to do that? 
+
+Many thanks! 
+
+------------
+
+BUG: Sugar market form fieds not updated
+
+ _______
+
+ 
+Note written on: 2023-02-07 08:59:25
+
+assigned to: Taciana Gretter Support Specialist  EMEA Support Tier 1
+
+Titile: Refund from un-enrolled course
+ Description: Morning team, I unenrolled from a course on SugarU and would just like to enquire when the refund will be processed, as I can see the charge has not yet been reversed. Thanks in advance for your help.
+Best regards,
+Tyler
+
+ _______
+
+ 
+Note written on: 2023-02-01 08:17:32
+
+assigned to: Stephen Smith Advanced Support Engineer US Support Tier 3
+
+Titile: Mass updating all records
+ Description: Hello team, I would like to mass update the records for all Accounts in our system, specifically the Classification attribute. Based on my understanding of your documentation, I need to export a list of all existing accounts. However, when I try this, I'm only able to export 1000 records at a time. How may I go about exporting all records of Accounts, please? Thanks in advance for your assistance.
+
+ _______
+
+ 
+Note written on: 2023-01-31 16:12:20
+
+assigned to: Lori Fuller Technical Support Engineer US Support Tier 2
+
+Titile: [BlueStreak] Aborting send for Customer rystadenergy.com(97637), Campaign 2133 ("Energytransition_Batteries_whitepaper_BESS_Jan_2023_AMERICAS") (Unexpected Exception)
+ Description: Could not stage campaign for Customer rystadenergy.com(97637), Campaign 2133 (Energytransition_Batteries_whitepaper_BESS_Jan_2023_AMERICAS). The send is being aborted, and the campaign has been disabled until the following error is resolved. Resend the campaign once the following errors are fixed. Exception: Invalid column name Subscriber_license_status__c. Could not use view or function viewAccountContact because of binding errors. at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry) at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method) at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method) at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior) at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior) at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable) at Fusion.Library.DB.SqlServerCon.SelectSql(String sql, GenericParam[] gParam, Int32 timeout) at Fusion.Library.DB.SqlServerCon.SelectSql(String sql, GenericParam[] gParam) at Fusion.Reporting.ReportResultRunner.GetRecipients(Int32 reportId) at Fusion.CampaignRecipients.ListTypes.ReportListType.TryGetRecipients(Int32 listId) at Fusion.CampaignRecipients.ListTypes.ReportListType.GetRecipients(Int32 listId) at Fusion.CampaignRecipients.ListTypes.CampaignListFactory.GetRecipients(Int32 listGroupId, CampaignListAction action) at Fusion.CampaignRecipients.RecipientGatherer.GetRecipientsByAction(Int32 campaignId, CampaignListAction action) at Fusion.CampaignRecipients.RecipientGatherer.GetRecipients(Int32 campaignId) at Hermes.BlueStreak.EmailFiltering.EmailFilter.GetContactListForCampaign() at Hermes.BlueStreak.Staging.Actions.CreateCampaignerActualStagingEntries.GetCompleteListOfContactsForCampaign(ICampaignerDataAccessor campaign) at Hermes.BlueStreak.Staging.Actions.CreateCampaignerActualStagingEntries.BuildCampaignerActualStagingList(ICampaignerDataAccessor customer) at Hermes.BlueStreak.Staging.Actions.CreateCampaignerActualStagingEntries.ExecuteAction(IProcessCampaignAllDataAccessor dataAccessor, Campaigner campaign)Exception: Null
+
+ _______
+
+ 
+Note written on: 2023-01-30 09:53:02
+
+assigned to: Krzysztof Andrzejewski Technical Support Engineer EMEA Support Tier 2
+
+Titile: Sync customized fields info in Sugar Market
+ Description: Hi Sugar support,
+
+Would it be possible to sync customized fields such as subscriber license status from Sugar CRM to Sugar Market for each contact and lead? Many thanks!
+
+https://www.screencast.com/t/faY5A2Co9o
+
+https://rystadenergy.sugaropencloud.eu/#Contacts/b11c6f36-7f3c-11e8-8c6f-5254004653d4
+
+Best regards,
+
+Huan
+
+ _______
+
+ 
+Note written on: 2023-01-26 13:33:19
+
+assigned to: Taciana Gretter Support Specialist  EMEA Support Tier 1
+
+Titile: SugarClub Access issue
+ Description: Hello team, I was not able to access or register in SugarClub, I am located in Moscow, Russia right now and tries both Cisco AnyConnect VPN and another one I usually use in Chrome (LinkedIn works for example), but still get error 403 when trying to open Sugar Club welcome page. What might be the issue here? Thank you.
+
+ _______
+
+ 
+Note written on: 2023-01-26 10:53:01
+
+assigned to: Krzysztof Andrzejewski Technical Support Engineer EMEA Support Tier 2
+
+Titile: BUG: Sugar market form fieds not updated
+ Description: Hi Support,
+
+ 
+
+Could you please help me check why “Agreed to Policy” box is not ticked for this lead created? This applies to many new leads so I am not sure whether this info is synced correctly. Thanks.
+
+ 
+
+
+
+https://appeu.salesfusion.com/FormBuilder.aspx#/creator/638
+
+ 
+
+
+
+ 
+
+Form ID 638
+
+ 
+
+ 
+
+
+
+Best regards,
+
+Huan
+
+ _______
+
+ 
+Note written on: 2023-01-26 10:34:19
+
+assigned to: Raquel Conde Margalho  EMEA Support Tier 2
+
+Titile: How to mass update custom field for leads and contacts?
+ Description: Hi Support,
+
+ 
+
+I want to mass update the field Agreed to Policy (gdpr_allowed_c) for selected leads and contacts but when I try to upload the list that I pull from this report, I can’t find field “agreed to policy” to map. May I ask how can I update the value for the field “Agreed to policy” in bulk?
+
+Thank you.
+
+ 
+
+Report: https://rystadenergy.sugaropencloud.eu/#Reports/0e93ec4a-9d5e-11ed-a342-0a0e20e09cba
+
+
+
+ 
+
+ 
+
+Best regards,
+
+Huan
+
+ _______
+
+ 
+Note written on: 2023-01-25 13:15:04
+
+assigned to: Simona Cretu  EMEA Support Tier 2
+
+Titile: BPM show error characters
+ Description: Hi Sugar support,
+
+ 
+
+Could you please check the BPMs as in the notification emails to our BDs, certain values failed to be fetched.
+
+ 
+
+BPM: https://rystadenergy.sugaropencloud.eu/#pmse_Project/412e97de-dace-11ec-8043-06f33fcdcd6e Event presentation request notification process
+
+https://rystadenergy.sugaropencloud.eu/#pmse_Project/8c51e990-c1ee-11eb-b158-068897b1c870  Solution webinar follow up form Notification Process
+
+ 
+
+
+
+ 
+
+
+
+Best regards,
+
+Huan
+
+ _______
+
+ 
+Note written on: 2023-01-23 15:36:26
+
+assigned to: Sean Chu Advanced Support Engineer US Support Tier 3
+
+Titile: [Re-open Case:473020] Cases not logging/Process List unavailable
+ Description: [Please describe why this case is being re-opened]
+
+
+------------
+
+Cases not logging/Process List unavailable
+
+ _______
+
+ 
+Note written on: 2023-01-23 14:09:36
+
+assigned to: Taciana Gretter Support Specialist  EMEA Support Tier 1
+
+Titile: Cases not logging/Process List unavailable
+ Description: Hi team, cases are currently not syncing to SugarCRM from our support email and it looks as if processes are not running correctly as I get a 500 error when I try to view them: https://rystadenergy.sugaropencloud.eu/index.php#pmse_Inbox/layout/casesList
+Any suggestions as to what might be going wrong here?
+
+ 

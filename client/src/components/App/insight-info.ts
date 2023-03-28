@@ -4,6 +4,7 @@ export const focusConfig: InsightCardProps[] = [
     {
         id: 0,
         title: 'Industry Summary',
+        //chatEndpoint: 'get-prompt-result',
         chatEndpoint: 'get-industry-prompt',
         initialPrompt: 'Rystad Energy',
     },

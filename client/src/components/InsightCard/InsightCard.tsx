@@ -1,7 +1,7 @@
 import { faMessage, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import PromptResponseList from '../PromptResponseList/PromptResponseList';
 import { ResponseInterface } from '../PromptResponseList/response-interface';
 import { InsightCardProps } from './insight-card-props-interface';
@@ -10,12 +10,17 @@ import './InsightCard.css';
 export const InsightCard = (props: InsightCardProps) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isRespCompleted, setIsRespCompleted] = useState(false);
+    const [promptInput, setPromptInput] = useState('');
     const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
     let loadInterval: number | undefined;
 
     
     useEffect(() => {
         streamGPTResult()
+    }, [])
+
+    const updatePrompt = useCallback((event:any) => {
+        setPromptInput(event.target.value)
     }, [])
 
     const delay = (ms: number) => {
@@ -87,7 +92,7 @@ export const InsightCard = (props: InsightCardProps) => {
                 if (isLoading) {
                     setIsLoading(false)
                 }
-                
+
                 updateResponse(uniqueId, {
                     response: decoder.decode(value),
                 });
@@ -103,56 +108,10 @@ export const InsightCard = (props: InsightCardProps) => {
         })
     }
 
-    const getGPTResult = async () => {
-        // Get the prompt input
-        const _prompt = props.initialPrompt;
-    
-        setIsLoading(true);
-    
-        let uniqueId: string;
-        uniqueId = addResponse(false);
-        await delay(50);
-    
-        try {
-          // Send a POST request to the API with the prompt in the request body
-          //const response = await
-          const response = await axios({
-            method: 'post',
-            url: 'get-prompt-result', 
-            data: {
-                prompt: _prompt,
-            },
-            headers: {
-                Accept: 'text/event-stream'
-            },
-            responseType: 'stream'
-          });
-
-          response.data.pipe((res: any) => {
-            console.log('here', res)
-          })
-
-        //   const stream = response.data;
-
-        //   stream.on('data', (data:any) => {
-        //     console.log('here', data)
-        //   })
-
-        //   setIsLoading(false)
-        //   updateResponse(uniqueId, {
-        //     response: response.data.trim(),
-        //   });
-        } catch (err) {
-          updateResponse(uniqueId, {
-            // @ts-ignore
-            response: `Error: ${err.message}`,
-            error: true
-          });
-        } finally {
-          // Clear the loader interval
-          clearInterval(loadInterval);
-          setIsLoading(false);
-        }
+    const handleClick = () => {
+        const uniqueId = addResponse(true, promptInput);
+        //TODO: 
+        setPromptInput('')
     }
 
     return (
@@ -177,8 +136,17 @@ export const InsightCard = (props: InsightCardProps) => {
                 { isRespCompleted && (<>
                     <div className='input-area'>
                         <div className='input-container'>
-                            <input type="text" placeholder={`Ask me about the ${props.title.toLowerCase()}...`}/>
-                            <button type="submit"><FontAwesomeIcon icon={faMessage}/></button>
+                            <input 
+                                type="text" 
+                                placeholder={`Ask me about the ${props.title.toLowerCase()}...`}
+                                value={promptInput}
+                                onChange={updatePrompt}
+                            />
+                            <button 
+                                type="submit"
+                                onClick={handleClick}>
+                                <FontAwesomeIcon icon={faMessage}/>
+                            </button>
                         </div>
                     </div>
                     </>

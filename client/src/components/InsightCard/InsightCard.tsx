@@ -70,7 +70,7 @@ export const InsightCard = (props: InsightCardProps) => {
         fetch(`http://localhost:3001/${props.chatEndpoint}`, {
             method: 'POST',
             headers: {
-                'Accepts': 'text/event-stream',
+                'Accepts': '*/*',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({prompt: _prompt})
@@ -87,7 +87,7 @@ export const InsightCard = (props: InsightCardProps) => {
                 if (isLoading) {
                     setIsLoading(false)
                 }
-                console.log('???', decoder.decode(value))
+                
                 updateResponse(uniqueId, {
                     response: decoder.decode(value),
                 });

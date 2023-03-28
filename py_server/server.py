@@ -68,12 +68,19 @@ Overall, the energy industry is undergoing a significant transformation as it ad
         yield '{}\n'.format(line)
 # - Helpers
 def stream_chat_response(completion):
+    buffer = ""
     for chunk in completion:
-        data_dict = json.loads(json.dumps(chunk))
         try:
-            yield data_dict["choices"][0]["delta"]["content"]
-        except:
-            yield ""
+            content = chunk["choices"][0]["delta"]["content"]
+            buffer += content
+            while '\n' in buffer:
+                line, buffer = buffer.split('\n', 1)
+                yield '{}\n'.format(line)
+        except (KeyError, IndexError):
+            continue
+
+    if buffer:
+        yield buffer
 
 def read_txt(what):
     with open(f'{what}', 'r') as f:
@@ -89,8 +96,6 @@ def get_prompt_result():
         stream=True
     )
 
-    #return response
-    #return response.choices[0].message.content
     return Response(stream_chat_response(response), mimetype='text/event-stream')
 
 @app.route('/get-industry-prompt', methods=['POST'])

@@ -66,6 +66,7 @@ Overall, the energy industry is undergoing a significant transformation as it ad
     for line in resp.split('\n'):
         time.sleep(0.3)
         yield '{}\n'.format(line)
+
 # - Helpers
 def stream_chat_response(completion):
     buffer = ""
@@ -87,28 +88,39 @@ def read_txt(what):
         res = f.read()
     return res
 
+def add_prev_messages(request, messages):
+    prev = request.json['prev']
+    if prev:
+        messages.extend(prev)
+
+    return messages
+
 @app.route('/get-prompt-result', methods=['POST'])
 def get_prompt_result():
     prompt = """Hello, {}""".format(request.json['prompt'])
-    response = openai.ChatCompletion.create(
-        model='gpt-3.5-turbo',
-        messages=[prompt_context, user_prompt],
-        stream=True
-    )
-
-    return Response(stream_chat_response(response), mimetype='text/event-stream')
+    # response = openai.ChatCompletion.create(
+    #     model='gpt-3.5-turbo',
+    #     messages=[prompt_context, user_prompt],
+    #     stream=True
+    # )
+    return Response(chunk_reponse(), mimetype='text/event-stream')
+    #return Response(stream_chat_response(response), mimetype='text/event-stream')
 
 @app.route('/get-industry-prompt', methods=['POST'])
 def get_industry_result():
     company = request.json['prompt']
+
     list_prompt_context = {'role': 'assistant', 'content': 'Summerize requests as reports under 120 words'}
     report_prompt = {'role': 'user', 
         'content': 'Give me an industry summary report for {}.  Include industry trends and other companies that compete with {}.  Format as markdown'.format(company, company)}
 
+    messages = [list_prompt_context, report_prompt]
+
+    messages = add_prev_messages(request, messages)
 
     response = openai.ChatCompletion.create(
         model='gpt-3.5-turbo',
-        messages=[list_prompt_context, report_prompt],
+        messages=messages,
         stream=True
     )
 
@@ -116,6 +128,7 @@ def get_industry_result():
 
 @app.route('/get-company-prompt', methods=['POST'])
 def get_company_prompt():
+    prev = request.json['prev']
     aboutus_r = read_txt('./data/aboutus_Rystad.txt')
     main_r = read_txt('./data/main_Rystad.txt')
 
@@ -143,7 +156,10 @@ def get_company_prompt():
                 "content": intro +'\n' +main_r  + '\n' + aboutus_r},
             #{"role":"system",
             #"content": sys_message}
-            ]    
+            ]
+    
+    messages = add_prev_messages(request, messages)
+
     response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages,
@@ -174,7 +190,10 @@ def get_contact_information():
     messages = [{"role":"system",
             "content": sys_message}, 
             {"role": "user",
-                "content": intro + contact_r}]    
+                "content": intro + contact_r}] 
+
+    messages = add_prev_messages(request, messages)
+
     response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages,
@@ -201,7 +220,10 @@ def get_employee_summary():
     messages = [{"role": "user",
                 "content": intro + management_r},
             {"role":"system",
-            "content": sys_message}]    
+            "content": sys_message}]
+
+    messages = add_prev_messages(request, messages)
+
     response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages,
@@ -226,7 +248,10 @@ def get_case_summary():
     messages = [{"role": "system",
                 "content": intro },
             {"role": "user",
-                "content": intro_single + cases_r}]    
+                "content": intro_single + cases_r}]  
+    
+    messages = add_prev_messages(request, messages)
+    
     response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages,
@@ -239,6 +264,35 @@ def get_case_summary():
         )
     
     return Response(stream_chat_response(response), mimetype='text/event-stream')
+
+@app.route('/questions', methods=['POST'])
+def get_questions():
+    prev = request.json['prev']
+    intro = """
+        You read content and come up with questions.
+        Questions cannot be longer than 10 words.
+        Questions always end with '?'.  
+        You do not supply any other text.
+        You do not number the questions.
+    """
+    prompt = """
+        Based on this, generate 3 questions about the text.
+        Questions cannot be longer than 10 words.
+        Do not put any numbers in your response.
+    """
+
+    messages = [{'role': 'system', 'content': intro}]
+    if prev:
+        messages.extend(prev)
+
+    messages.extend([{'role': 'user', 'content': prompt}])
+
+    response = openai.ChatCompletion.create(
+        model='gpt-3.5-turbo',
+        messages=messages,
+    )
+
+    return response['choices'][0]['message']['content']
 
 if __name__ == '__main__':
     app.run(port=3001, debug=True)

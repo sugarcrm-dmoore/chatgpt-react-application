@@ -1,9 +1,24 @@
 /* Style for each response element in the list */
 .response-container {
     margin-bottom: 10px;
-    padding: 0 2vw;
+    padding: 2vh 2vw;
     font-size: 1rem;
     display: flex;
+}
+
+.response-container:first-child {
+    padding: 0 2vw;
+}
+
+.response-container:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.response-container.user-input {
+    background-color: rgba(6, 121, 200, 0.25);
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .response-container .avatar-image {
@@ -28,23 +43,31 @@
     padding: 0 !important;
 }
 
-.response-container .prompt-content h1 {
+.response-container.ai-resp .prompt-content h1 {
     font-size: 16px;
     font-weight: 700;
 }
 
-.response-container .prompt-content h2 {
+.response-container.ai-resp .prompt-content h2 {
     font-size: 14px;
     font-weight: 600;
 }
 
-.response-container .prompt-content p,ul {
+.response-container.ai-resp .prompt-content p,ul,ol {
     font-size: 12px;
     font-weight: 400;
 }
 
-.response-container .prompt-content p:first-child {
-    margin-top: 0;
+.response-container.ai-resp .prompt-content ol li::marker {
+    font-weight: 600;
+}
+
+.response-container.ai-resp .prompt-content ul, ol {
+    padding-inline-start: 20px;
+}
+
+.response-container.ai-resp .prompt-content ol {
+    list-style-type: decimal;
 }
 
 .ai-image {

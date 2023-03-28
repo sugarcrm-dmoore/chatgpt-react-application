@@ -24,7 +24,7 @@ const PromptResponseList: FC<PromptResponseListProps> = ({ responseList }) => {
   return (
     <div className="prompt-response-list" ref={responseListRef}>
       {responseList.map((responseData) => (
-        <div className={"response-container "} key={responseData.id}>
+        <div className={`response-container ${responseData.selfFlag ? 'user-input' : 'ai-resp'}`} key={responseData.id}>
           <div className={(responseData.error ? 'error-response ' : '') + "prompt-content"} id={responseData.id}>
             { responseData.response &&
               <ReactMarkdown

@@ -216,18 +216,20 @@ export const InsightCard = (props: InsightCardProps) => {
     const resetAndSetScroll = () => {
         setPromptInput('')
         setQuestionList([]);
-        streamGPTResult()
         setIsInputFocused(false)
         setTimeout(() => {
             if (chatAreaRef.current && responseListRef.current) {
                 chatAreaRef.current.scrollTop = responseListRef.current.offsetHeight;
             }
-        }, 300)
+        }, 100)
     }
 
     const handleSubmit = () => {
         addResponse(true, promptInput);
-        resetAndSetScroll();
+        setTimeout(() => {
+            streamGPTResult();
+            resetAndSetScroll();
+        }, 300)
     }
 
     const handleKeyPress = (event: { key: string; }) => {
@@ -238,7 +240,10 @@ export const InsightCard = (props: InsightCardProps) => {
 
     const handleQuestionClick = (question: string) => {
         addResponse(true, question);
-        resetAndSetScroll();
+        setTimeout(() => {
+            streamGPTResult();
+            resetAndSetScroll();
+        }, 300)
     }
 
     return (

@@ -15,16 +15,23 @@ export const InsightCard = (props: InsightCardProps) => {
     const [isInputFocused, setIsInputFocused] = useState(false);
     const [isQuestionLoading, setIsQuestionLoading] = useState(false);
     const responseListRef = useRef() as MutableRefObject<HTMLDivElement>;
+    const chatAreaRef = useRef() as MutableRefObject<HTMLDivElement>;
     let loadInterval: number | undefined;
 
     
     useEffect(() => {
-        streamGPTResult()
+        const timer = setTimeout(() =>  {
+            streamGPTResult()
+        }, 2000)
+
+        return () => {
+            clearTimeout(timer);
+        }
     }, [])
 
-    const updatePrompt = useCallback((event:any) => {
+    const updatePrompt = (event:any) => {
         setPromptInput(event.target.value)
-    }, [])
+    }
 
     const delay = (ms: number) => {
         return new Promise( resolve => setTimeout(resolve, ms) );
@@ -192,6 +199,7 @@ export const InsightCard = (props: InsightCardProps) => {
                 updateResponse(uniqueId, {
                     response: decoder.decode(value),
                 });
+
                 reader.read().then(processText)
             })
         })
@@ -201,17 +209,25 @@ export const InsightCard = (props: InsightCardProps) => {
                 response: `Error: ${error.message}`,
                 error: true
             });
+            setIsRespCompleted(true)
         })
+    }
+
+    const resetAndSetScroll = () => {
+        setPromptInput('')
+        setQuestionList([]);
+        streamGPTResult()
+        setIsInputFocused(false)
+        setTimeout(() => {
+            if (chatAreaRef.current && responseListRef.current) {
+                chatAreaRef.current.scrollTop = responseListRef.current.offsetHeight;
+            }
+        }, 300)
     }
 
     const handleSubmit = () => {
         addResponse(true, promptInput);
-        setPromptInput('')
-        setTimeout(() => {
-            const list = responseListRef.current.children[0]
-            list.children[list.children.length - 1].scrollIntoView({behavior: 'smooth'})
-            streamGPTResult()
-        }, 300)
+        resetAndSetScroll();
     }
 
     const handleKeyPress = (event: { key: string; }) => {
@@ -222,13 +238,7 @@ export const InsightCard = (props: InsightCardProps) => {
 
     const handleQuestionClick = (question: string) => {
         addResponse(true, question);
-        setPromptInput('')
-        setQuestionList([]);
-        setTimeout(() => {
-            const list = responseListRef.current.children[0]
-            list.children[list.children.length - 1].scrollIntoView({behavior: 'smooth'})
-            streamGPTResult()
-        }, 300)
+        resetAndSetScroll();
     }
 
     return (
@@ -245,24 +255,22 @@ export const InsightCard = (props: InsightCardProps) => {
                     </div>
                 </div>
                 { !isLoading && (
-                    <div className='chat-area'>
+                    <div ref={chatAreaRef} className='chat-area'>
                         { !isLoading && (
                             <div id="response-list" ref={responseListRef}>
                                 <PromptResponseList 
                                     responseList={responseList} 
                                     key="response-list"/>
-                                    { !isRespCompleted && (
-                                        <div className='three-dot-loader lg center top blue'>
-                                            <div/><div/><div/>
-                                        </div>
-                                    )}
+                                <div className={`three-dot-loader lg center top blue ${isRespCompleted ? 'hidden' : ''}`}>
+                                    <div/><div/><div/>
+                                </div>
                             </div>)}
                     </div>)
                 }
                 { questionList.length > 0 
                     && isInputFocused
                     && isRespCompleted
-                    && promptInput === ''
+                    && promptInput == ''
                     && (
                     <div className='question-area'>
                         {questionList.map((q, i) => 

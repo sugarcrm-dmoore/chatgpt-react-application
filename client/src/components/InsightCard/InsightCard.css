@@ -75,6 +75,10 @@
     position: relative;
 }
 
+.three-dot-loader.hidden {
+    display: none !important;
+}
+
 .three-dot-loader.center {
     display: inline-block;
     width: 100%;
@@ -134,6 +138,7 @@
 .chat-area {
     flex: 1;
     overflow-y: auto;
+    transition: scroll .5s ease-in-out;
 }
 
 .input-area {

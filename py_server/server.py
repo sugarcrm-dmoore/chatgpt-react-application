@@ -6,7 +6,7 @@ from flask_cors import CORS
 import json
 import time
 
-openai.api_key = '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'
+openai.api_key = '<>'
 prompt_context = {'role': 'system', 'content': 'please be friendly to the user'}
 user_prompt = {'role': 'user', 'content': 'hello, how are you?'}
 
@@ -67,7 +67,7 @@ Overall, the energy industry is undergoing a significant transformation as it ad
         time.sleep(0.3)
         yield '{}\n'.format(line)
 
-# - Helpers
+# This streams each line back to the client
 def stream_chat_response(completion):
     buffer = ""
     for chunk in completion:
@@ -88,6 +88,7 @@ def read_txt(what):
         res = f.read()
     return res
 
+# Takes array of previous messages and adds it to current prompt of messages
 def add_prev_messages(request, messages):
     prev = request.json['prev']
     if prev:
@@ -124,6 +125,9 @@ def get_industry_result():
         stream=True
     )
 
+    #Without stream=True
+    #return response['choices'][0]['message']['content']
+    #With stream=True
     return Response(stream_chat_response(response), mimetype='text/event-stream')
 
 @app.route('/get-company-prompt', methods=['POST'])
@@ -256,7 +260,6 @@ def get_case_summary():
             model="gpt-3.5-turbo",
             messages=messages,
             temperature=0,
-            max_tokens=200,
             top_p=1,
             frequency_penalty=0,
             presence_penalty=0,
@@ -265,6 +268,7 @@ def get_case_summary():
     
     return Response(stream_chat_response(response), mimetype='text/event-stream')
 
+# Used by any card to generate questions based on the previous conversation
 @app.route('/questions', methods=['POST'])
 def get_questions():
     prev = request.json['prev']

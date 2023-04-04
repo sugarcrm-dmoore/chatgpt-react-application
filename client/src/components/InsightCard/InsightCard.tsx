@@ -20,13 +20,7 @@ export const InsightCard = (props: InsightCardProps) => {
 
     
     useEffect(() => {
-        const timer = setTimeout(() =>  {
-            streamGPTResult()
-        }, 2000)
-
-        return () => {
-            clearTimeout(timer);
-        }
+        streamGPTResult()
     }, [])
 
     const updatePrompt = (event:any) => {

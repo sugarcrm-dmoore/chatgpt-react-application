@@ -7,12 +7,12 @@ This repository contains a Flask server that integrates with the OpenAI API to g
 Clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/your-username/flask-openai-server.git
+git clone https://github.com/sugarcrm-dmoore/chatgpt-react-application.git
 ```
 
 Navigate to the project directory.
 ```bash
-cd flask-openai-server
+cd ./py_server
 ```
 
 Install the required Python packages using pip.
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 Set the OPENAI_API_KEY environment variable to your OpenAI API key.
 ```bash
-export OPENAI_API_KEY=<your_api_key>
+server.py line:9 openai.api_key = '[YOUR_KEY]'
 ```
 
 ##Usage
@@ -33,8 +33,6 @@ python server.py
 ```
 Open your web browser and navigate to http://localhost:3001.
 
-Enter a prompt in the form and click the "Submit" button.
-The server will generate text based on the prompt using the OpenAI API and display it on the web page.
 ##License
 
 This project is licensed under the MIT License - see the LICENSE file for details.

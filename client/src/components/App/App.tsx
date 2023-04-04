@@ -57,6 +57,7 @@ const App = () => {
               </div>
             </div>
             <div className={'card-area'}>
+              {/* Reads the insight-info.ts file and creates a "InsightCard" for each entry*/}
               { focusConfig.map(c => (<InsightCard {...c}/>)) }
             </div>
           </div>)}
